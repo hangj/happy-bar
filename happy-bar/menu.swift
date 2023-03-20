@@ -8,13 +8,17 @@
 import AppKit
 import SwiftUI
 import WebKit
-//import Cocoa
+import HotKey
 
 
 class Menu: NSMenu, NSMenuDelegate {
+    // MARK: - Properties
     private weak var statusItem: NSStatusItem?
     static let menuWidth = 300
 
+    private var hotKey: HotKey?
+
+    // MARK: - init
     required init(coder decoder: NSCoder) {
         super.init(coder: decoder)
     }
@@ -29,6 +33,15 @@ class Menu: NSMenu, NSMenuDelegate {
             // button.title = "😄"
         }
 
+        self.hotKey = {
+            let hk = HotKey(key: .m, modifiers: [.command, .shift, .option])
+            hk.keyDownHandler = {
+                print("Pressed at \(Date())")
+                statusItem.button?.performClick(_: nil)
+            }
+            return hk
+        }()
+
         self.statusItem = statusItem
         self.delegate = self
         self.minimumWidth = CGFloat(Menu.menuWidth)
@@ -36,6 +49,7 @@ class Menu: NSMenu, NSMenuDelegate {
         setup()
     }
 
+    // MARK: - NSMenuDelegate protocol functions
     func menuWillOpen(_ menu: NSMenu) {
         print("menu will open")
     }
@@ -44,6 +58,7 @@ class Menu: NSMenu, NSMenuDelegate {
         print("menu did close")
     }
 
+    // MARK: - methods
     private func setup() {
 //        let webview = WebPanelView(request: URLRequest(url: URL(string: "https://hangj.cnblogs.com")!))
 //        let viewController = NSHostingController(rootView: webview)

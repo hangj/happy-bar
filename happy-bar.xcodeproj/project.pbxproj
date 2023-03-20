@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		A0895E8229C5C1510044AF35 /* UIState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0895E8129C5C1510044AF35 /* UIState.swift */; };
 		A0895E8629C82E1B0044AF35 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0895E8529C82E1B0044AF35 /* WebView.swift */; };
+		A0D26A3429C859A900AB6C04 /* HotKey in Frameworks */ = {isa = PBXBuildFile; productRef = A0D26A3329C859A900AB6C04 /* HotKey */; };
+		A0D26A3629C85A6F00AB6C04 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = A0D26A3529C85A6F00AB6C04 /* LaunchAtLogin */; };
 		A0ECD1EE29C459F600C82BA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0ECD1ED29C459F600C82BA8 /* Assets.xcassets */; };
 		A0ECD1FC29C46EA600C82BA8 /* menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0ECD1FB29C46EA600C82BA8 /* menu.swift */; };
 		A0ECD1FE29C58FD900C82BA8 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0ECD1FD29C58FD900C82BA8 /* App.swift */; };
@@ -32,17 +34,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0D26A3629C85A6F00AB6C04 /* LaunchAtLogin in Frameworks */,
+				A0D26A3429C859A900AB6C04 /* HotKey in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A03CB91729C8524C003FA4DC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A0ECD1DD29C459F200C82BA8 = {
 			isa = PBXGroup;
 			children = (
 				A0ECD1E829C459F200C82BA8 /* happy-bar */,
 				A0ECD1E729C459F200C82BA8 /* Products */,
+				A03CB91729C8524C003FA4DC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -93,6 +105,10 @@
 			dependencies = (
 			);
 			name = "happy-bar";
+			packageProductDependencies = (
+				A0D26A3329C859A900AB6C04 /* HotKey */,
+				A0D26A3529C85A6F00AB6C04 /* LaunchAtLogin */,
+			);
 			productName = "happy-bar";
 			productReference = A0ECD1E629C459F200C82BA8 /* happy-bar.app */;
 			productType = "com.apple.product-type.application";
@@ -121,6 +137,10 @@
 				Base,
 			);
 			mainGroup = A0ECD1DD29C459F200C82BA8;
+			packageReferences = (
+				A0D26A2629C8562700AB6C04 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
+				A0D26A3229C859A900AB6C04 /* XCRemoteSwiftPackageReference "HotKey" */,
+			);
 			productRefGroup = A0ECD1E729C459F200C82BA8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -194,6 +214,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/**";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -255,6 +276,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/**";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -278,6 +300,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "happy-bar/happy_bar.entitlements";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -306,6 +329,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "happy-bar/happy_bar.entitlements";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -350,6 +374,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A0D26A2629C8562700AB6C04 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin";
+			requirement = {
+				kind = exactVersion;
+				version = 4.2.0;
+			};
+		};
+		A0D26A3229C859A900AB6C04 /* XCRemoteSwiftPackageReference "HotKey" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/soffes/HotKey";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A0D26A3329C859A900AB6C04 /* HotKey */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0D26A3229C859A900AB6C04 /* XCRemoteSwiftPackageReference "HotKey" */;
+			productName = HotKey;
+		};
+		A0D26A3529C85A6F00AB6C04 /* LaunchAtLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0D26A2629C8562700AB6C04 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */;
+			productName = LaunchAtLogin;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A0ECD1DE29C459F200C82BA8 /* Project object */;
 }

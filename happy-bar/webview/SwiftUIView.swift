@@ -7,6 +7,7 @@
 
 import SwiftUI
 import WebKit
+import LaunchAtLogin
 
 struct SwiftUIView: View {
     @StateObject var state = UIState()
@@ -19,6 +20,8 @@ struct SwiftUIView: View {
                 .foregroundColor(.green)
                 .lineLimit(100)
             .frame(width: 80, height: 20, alignment: .leading)
+
+//            LaunchAtLogin.Toggle()
 
 //            Spacer()
 
