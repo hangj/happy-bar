@@ -29,15 +29,19 @@ class Menu: NSMenu, NSMenuDelegate {
         print("init main menu")
 
         if let button = statusItem.button {
-            button.image = NSImage(systemSymbolName: "1.circle", accessibilityDescription: "1")
-            // button.title = "😄"
+//            button.image = NSImage(systemSymbolName: "1.circle", accessibilityDescription: "1")
+            button.title = "😄"
         }
 
         self.hotKey = {
             let hk = HotKey(key: .m, modifiers: [.command, .shift, .option])
             hk.keyDownHandler = {
                 print("Pressed at \(Date())")
-                statusItem.button?.performClick(_: nil)
+                //statusItem.button?.performClick(_: nil)
+                //self.popUp(positioning: nil, at: NSEvent.mouseLocation, in: nil)
+                if let frame = NSScreen.main?.visibleFrame {
+                    self.popUp(positioning: nil, at: NSRect.centered(ofSize: self.size, in: frame).origin, in: nil)
+                }
             }
             return hk
         }()
@@ -60,9 +64,7 @@ class Menu: NSMenu, NSMenuDelegate {
 
     // MARK: - methods
     private func setup() {
-//        let webview = WebPanelView(request: URLRequest(url: URL(string: "https://hangj.cnblogs.com")!))
-//        let viewController = NSHostingController(rootView: webview)
-//        viewController.view.frame.size = CGSize(width: Menu.menuWidth, height: 200)
+
         let webItem: NSMenuItem = {
             let item = NSMenuItem()
             let webview = WebPanelView(request: URLRequest(url: URL(string: "https://hangj.cnblogs.com")!))
@@ -80,7 +82,7 @@ class Menu: NSMenu, NSMenuDelegate {
             let ui = SwiftUIView() //.frame(width: 100, height: 100, alignment: .center)
             let contentView = NSHostingController(rootView: ui)
             // Setting a size for our now playing view
-            contentView.view.frame.size = CGSize(width: Menu.menuWidth, height: 200)
+            contentView.view.frame.size = CGSize(width: Menu.menuWidth, height: 100)
             item.view = contentView.view
             return item
         }()
@@ -122,20 +124,6 @@ class Menu: NSMenu, NSMenuDelegate {
 
     @objc func didTapThree() {
         changeStatusBarButton(number: 3)
-
-//        self.popUp(positioning: nil, at: NSEvent.mouseLocation, in: nil)
-
-
-//        if let frame = NSScreen.forPopup?.visibleFrame {
-//            self.popUp(positioning: nil, at: NSRect.centered(ofSize: self.size, in: frame).origin, in: nil)
-//            print("for Popup")
-//            return
-//        }
-        if let frame = NSWorkspace.shared.frontmostApplication?.windowFrame {
-            self.popUp(positioning: nil, at: NSRect.centered(ofSize: self.size, in: frame).origin, in: nil)
-            print("frontmost Application")
-            return
-        }
     }
 
     // The selector that takes a link and opens it
