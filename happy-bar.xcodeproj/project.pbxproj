@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A0895E8229C5C1510044AF35 /* UIState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0895E8129C5C1510044AF35 /* UIState.swift */; };
+		A0895E8629C82E1B0044AF35 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0895E8529C82E1B0044AF35 /* WebView.swift */; };
 		A0ECD1EE29C459F600C82BA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0ECD1ED29C459F600C82BA8 /* Assets.xcassets */; };
 		A0ECD1FC29C46EA600C82BA8 /* menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0ECD1FB29C46EA600C82BA8 /* menu.swift */; };
 		A0ECD1FE29C58FD900C82BA8 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0ECD1FD29C58FD900C82BA8 /* App.swift */; };
@@ -16,6 +17,7 @@
 
 /* Begin PBXFileReference section */
 		A0895E8129C5C1510044AF35 /* UIState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIState.swift; sourceTree = "<group>"; };
+		A0895E8529C82E1B0044AF35 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		A0ECD1E629C459F200C82BA8 /* happy-bar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "happy-bar.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0ECD1ED29C459F600C82BA8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A0ECD1F229C459F600C82BA8 /* happy_bar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = happy_bar.entitlements; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 			children = (
 				A0ECD20029C59E3F00C82BA8 /* SwiftUIView.swift */,
 				A0895E8129C5C1510044AF35 /* UIState.swift */,
+				A0895E8529C82E1B0044AF35 /* WebView.swift */,
 			);
 			path = webview;
 			sourceTree = "<group>";
@@ -146,6 +149,7 @@
 				A0ECD20129C59E3F00C82BA8 /* SwiftUIView.swift in Sources */,
 				A0ECD1FC29C46EA600C82BA8 /* menu.swift in Sources */,
 				A0ECD1FE29C58FD900C82BA8 /* App.swift in Sources */,
+				A0895E8629C82E1B0044AF35 /* WebView.swift in Sources */,
 				A0895E8229C5C1510044AF35 /* UIState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

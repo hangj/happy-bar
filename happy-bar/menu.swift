@@ -7,6 +7,7 @@
 
 import AppKit
 import SwiftUI
+import WebKit
 //import Cocoa
 
 
@@ -20,6 +21,9 @@ class Menu: NSMenu, NSMenuDelegate {
     init(statusItem: NSStatusItem) {
         super.init(title: "happy-bar")
         statusItem.behavior = .removalAllowed
+
+        print("init main menu")
+
         if let button = statusItem.button {
             button.image = NSImage(systemSymbolName: "1.circle", accessibilityDescription: "1")
             // button.title = "😄"
@@ -41,41 +45,54 @@ class Menu: NSMenu, NSMenuDelegate {
     }
 
     private func setup() {
-        let header = NSMenuItem()
-        header.title = "SwiftUIView"
-        // https://stackoverflow.com/questions/65082604/is-there-a-way-to-load-swiftui-view-into-nsview
-        let ui = SwiftUIView() //.frame(width: 100, height: 100, alignment: .center)
+//        let webview = WebPanelView(request: URLRequest(url: URL(string: "https://hangj.cnblogs.com")!))
+//        let viewController = NSHostingController(rootView: webview)
+//        viewController.view.frame.size = CGSize(width: Menu.menuWidth, height: 200)
+        let webItem: NSMenuItem = {
+            let item = NSMenuItem()
+            let webview = WebPanelView(request: URLRequest(url: URL(string: "https://hangj.cnblogs.com")!))
+            let viewController = NSHostingController(rootView: webview)
+            viewController.view.frame.size = CGSize(width: Menu.menuWidth, height: 200)
+            item.view = viewController.view
+            return item
+        }()
+        self.addItem(webItem)
 
-        let contentView = NSHostingController(rootView: ui)
-        // Setting a size for our now playing view
-        contentView.view.frame.size = CGSize(width: 200, height: 100)
-        header.view = contentView.view
 
-//        header.view = customView
-        addItem(header)
+        let header: NSMenuItem = {
+            let item = NSMenuItem()
+            // https://stackoverflow.com/questions/65082604/is-there-a-way-to-load-swiftui-view-into-nsview
+            let ui = SwiftUIView() //.frame(width: 100, height: 100, alignment: .center)
+            let contentView = NSHostingController(rootView: ui)
+            // Setting a size for our now playing view
+            contentView.view.frame.size = CGSize(width: Menu.menuWidth, height: 200)
+            item.view = contentView.view
+            return item
+        }()
+        self.addItem(header)
 
         let one = NSMenuItem(title: "One", action: #selector(didTapOne) , keyEquivalent: "1")
         one.target = self
-        addItem(one)
+        self.addItem(one)
 
         let three = NSMenuItem(title: "Three", action: #selector(didTapThree) , keyEquivalent: "3")
         three.target = self
-        addItem(three)
+        self.addItem(three)
 
         let l = NSMenuItem(title: "cnblogs", action: #selector(linkSelector), keyEquivalent: "")
         l.representedObject = "https://hangj.cnblogs.com"
         l.target = self
-        addItem(l)
+        self.addItem(l)
 
-        addItem(NSMenuItem.separator())
+        self.addItem(NSMenuItem.separator())
 
         let aboutMenuItem = NSMenuItem(title: "about", action: #selector(about), keyEquivalent: "")
         aboutMenuItem.target = self
-        addItem(aboutMenuItem)
+        self.addItem(aboutMenuItem)
 
         let quit = NSMenuItem(title: "Quit", action: #selector(quit), keyEquivalent: "q")
         quit.target = self
-        addItem(quit)
+        self.addItem(quit)
     }
     
     private func changeStatusBarButton(number: Int) {

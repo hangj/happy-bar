@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import WebKit
 
 struct SwiftUIView: View {
     @StateObject var state = UIState()
 
     var body: some View {
         VStack {
+//            WebView(request: URLRequest(url: URL(string: "https://hangj.cnblogs.com")!))
             Text(state.v)
                 .multilineTextAlignment(.leading)
                 .foregroundColor(.green)
