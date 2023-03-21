@@ -13,24 +13,34 @@ import HotKey
 
 class Menu: NSMenu, NSMenuDelegate {
     // MARK: - Properties
-    private weak var statusItem: NSStatusItem?
+
     static let menuWidth = 300
 
     private var hotKey: HotKey?
+
+    // The NSStatusBar manages a collection of status items displayed within a system-wide menu bar.
+    private lazy var statusItem: NSStatusItem = {
+        let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+        item.behavior = .removalAllowed
+        return item
+    }()
+
 
     // MARK: - init
     required init(coder decoder: NSCoder) {
         super.init(coder: decoder)
     }
-    init(statusItem: NSStatusItem) {
-        super.init(title: "happy-bar")
-        statusItem.behavior = .removalAllowed
+    override init(title: String) {
+        super.init(title: title)
+
+        statusItem.menu = self
+
 
         print("init main menu")
 
         if let button = statusItem.button {
 //            button.image = NSImage(systemSymbolName: "1.circle", accessibilityDescription: "1")
-            button.title = "😄"
+            button.title = title
         }
 
         self.hotKey = {
@@ -46,7 +56,6 @@ class Menu: NSMenu, NSMenuDelegate {
             return hk
         }()
 
-        self.statusItem = statusItem
         self.delegate = self
         self.minimumWidth = CGFloat(Menu.menuWidth)
 
@@ -111,9 +120,9 @@ class Menu: NSMenu, NSMenuDelegate {
         quit.target = self
         self.addItem(quit)
     }
-    
+
     private func changeStatusBarButton(number: Int) {
-        if let button = statusItem?.button {
+        if let button = self.statusItem.button {
             button.image = NSImage(systemSymbolName: "\(number).circle", accessibilityDescription: number.description)
         }
     }

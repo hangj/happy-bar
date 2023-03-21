@@ -25,13 +25,14 @@ struct myApp : App {
 class AppDelegate: NSObject, NSApplicationDelegate {
     static private(set) var instance: AppDelegate!
 
-    // The NSStatusBar manages a collection of status items displayed within a system-wide menu bar.
-    lazy var statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+    private var menus: [Menu] = []
+
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         AppDelegate.instance = self
 
-        statusItem.menu = Menu(statusItem: statusItem)
+        menus.append(Menu(title: "😊"))
+        menus.append(Menu(title: "😄"))
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
